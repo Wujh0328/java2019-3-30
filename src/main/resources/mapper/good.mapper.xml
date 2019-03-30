@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qianfeng.fxmall.goods.mapper.GoodMapper">
+    <resultMap id="goodResultMap" type="com.qianfeng.fxmall.goods.bean.WxbGood">
+        <id property="goodId" column="good_id" javaType="java.lang.String"/>
+        <result property="goodName" column="good_name" javaType="java.lang.String"/>
+        <result property="customerId" column="customer_id" javaType="java.lang.String"/>
+        <result property="goodPic" column="good_pic" javaType="java.lang.String"/>
+        <result property="goodPic1" column="good_pic1" javaType="java.lang.String"/>
+        <result property="goodPic2" column="good_pic2" javaType="java.lang.String"/>
+        <result property="promoteDesc" column="promote_desc" javaType="java.lang.String"/>
+        <result property="skuTitle" column="sku_title" javaType="java.lang.String"/>
+        <result property="skuCost" column="sku_cost" javaType="java.lang.String"/>
+        <result property="skuPrice" column="sku_price" javaType="java.lang.String"/>
+        <result property="skuPmoney" column="sku_pmoney" javaType="java.lang.String"/>
+        <result property="copyIds" column="copy_ids" javaType="java.lang.String"/>
+        <result property="copyDesc" column="copy_desc" javaType="java.lang.String"/>
+        <result property="forwardLink" column="forward_link" javaType="java.lang.String"/>
+        <result property="orderNo" column="order_no" javaType="java.lang.Integer"/>
+        <result property="typeId" column="type_id" javaType="java.lang.String"/>
+        <result property="tags" column="tags" javaType="java.lang.String"/>
+        <result property="state" column="state" javaType="java.lang.Integer"/>
+        <result property="createTime" column="create_time" javaType="java.sql.Timestamp"/>
+        <result property="toped" column="toped" javaType="java.lang.Integer"/>
+        <result property="recomed" column="recomed" javaType="java.lang.Integer"/>
+        <result property="topedTime" column="toped_time" javaType="java.sql.Timestamp"/>
+        <result property="recomedTime" column="recomed_time" javaType="java.sql.Timestamp"/>
+        <result property="spcId" column="spc_id" javaType="java.lang.String"/>
+        <result property="zonId" column="zon_id" javaType="java.lang.String"/>
+        <result property="sellNum" column="sell_num" javaType="java.lang.Integer"/>
+        <result property="website" column="website" javaType="java.lang.String"/>
+        <result property="iswxpay" column="iswxpay" javaType="java.lang.Integer"/>
+        <result property="isfdfk" column="isfdfk" javaType="java.lang.Integer"/>
+        <result property="leixingId" column="leixing_id" javaType="java.lang.Integer"/>
+        <result property="kfqq" column="kfqq" javaType="java.lang.String"/>
+    </resultMap>
+
+    <!--sql标签用来定义SQL语句，或者是部分SQL语句-->
+    <sql id="params">
+        good_id,good_name,customer_id,good_pic,good_pic1,good_pic2,promote_desc,sku_title,sku_cost,
+     sku_price,sku_pmoney,copy_ids,copy_desc,forward_link,order_no,type_id,tags,state,create_time,
+     toped,recomed,toped_time,recomed_time,spc_id,zon_id,sell_num,website,iswxpay,isfdfk,leixing_id,kfqq
+    </sql>
+
+    <select id="queryGoodsByPage" resultMap="goodResultMap">
+        select <include refid="params"/> from wxb_good limit #{index},#{size}
+    </select>
+
+    <insert id="goodSave">
+        insert into wxb_good(good_id, good_name, customer_id, good_pic, good_pic1,
+        good_pic2, promote_desc, sku_title, sku_cost, sku_price, sku_pmoney, copy_ids,
+         copy_desc, forward_link, order_no, type_id, tags, state,  create_time, toped,
+         recomed, toped_time, recomed_time, spc_id, zon_id, sell_num, website,
+         iswxpay, isfdfk, leixing_id, kfqq) values(#{goodId},#{goodName},#{customerId},
+         #{goodPic},#{goodPic1},#{goodPic2},#{promoteDesc},#{skuTitle},#{skuCost},#{skuPrice},
+         #{skuPmoney},#{copyIds},#{copyDesc},#{forwardLink},#{orderNo},#{typeId},#{tags},
+         #{state},#{createTime},#{toped},#{recomed},#{topedTime},#{recomedTime},#{spcId},
+         #{zonId},#{sellNum},#{website},#{iswxpay},#{isfdfk},#{leixingId},#{kfqq})
+    </insert>
+
+</mapper>

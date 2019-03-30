@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qianfeng.fxmall.goods.mapper.GoodSkuMapper">
+    <resultMap id="SkUResultMap" type="com.qianfeng.fxmall.goods.bean.WxbGoodSku">
+        <id property="skuId" column="sku_id" javaType="java.lang.String"/>
+        <result property="skuName" column="sku_name" javaType="java.lang.String"/>
+        <result property="skuCost" column="sku_cost" javaType="java.lang.String"/>
+        <result property="skuPrice" column="sku_price" javaType="java.lang.String"/>
+        <result property="skuPmoney" column="sku_pmoney" javaType="java.lang.String"/>
+        <result property="orderNo" column="order_no" javaType="java.lang.Integer"/>
+        <result property="goodId" column="good_id" javaType="java.lang.String"/>
+        <result property="serviceMoney" column="service_money" javaType="java.lang.String"/>
+    </resultMap>
+
+
+    <sql id="params">
+      sku_id,sku_name,sku_cost,sku_price,sku_pmoney,good_id,order_no,service_money
+    </sql>
+
+    <select id="queryGoodSku" resultMap="SkUResultMap">
+      select <include refid="params"/> from wxb_good_skun
+    </select>
+
+    <insert id="skuSave">
+        insert into wxb_good_sku(sku_id, sku_name, sku_cost, sku_price, sku_pmoney,
+         good_id, order_no, service_money) values(#{skuId},#{skuName},#{skuCost},
+         #{skuPrice},#{skuPmoney},#{goodId},#{orderNo},#{serviceMoney})
+    </insert>
+</mapper>
